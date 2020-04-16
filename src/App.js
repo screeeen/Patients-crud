@@ -18,15 +18,28 @@ class App extends Component {
       userId: 0,
       name: '',
       surname: '',
-      age: new Date(),
+      age: 0,
       patient: {},
       patientList: [],
       editing: false
     }
 
-    //binds
 
   }
+
+
+  mockData = [
+    { id: 0, name: 'Manuel', surname: 'Pereira', age: 30 },
+    { id: 1, name: 'Eddo', surname: 'Park', age: 53 },
+    { id: 2, name: 'Clark', surname: 'Syntherion', age: 45 },
+    { id: 3, name: 'Aphex', surname: 'Singlar', age: 93 },
+  ]
+
+  componentDidMount () {
+    this.setState ({patientList:this.mockData});
+  }
+
+
 
   addNewPatient(event) {
 
