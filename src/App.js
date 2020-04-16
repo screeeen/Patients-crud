@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
-
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import AddPatient from './components/AddPatient'
+import EditPatient from './components/EditPatient'
+import PatientsList from './components/PatientsList'
 
 class App extends Component {
 
@@ -13,31 +21,31 @@ class App extends Component {
       age: new Date(),
       patient: {},
       patientList: [],
-      editing:false
+      editing: false
     }
 
     //binds
 
   }
 
-  addNewPatient (event) {
+  addNewPatient(event) {
 
   }
 
-  deletePatient (id) {
+  deletePatient(id) {
 
   }
 
-  editPatient (patient){
+  editPatient(patient) {
 
   }
 
-  setEditingFlag (value) {
+  setEditingFlag(value) {
 
   }
 
 
-  updatePatientDetails (event) {
+  updatePatientDetails(event) {
 
   }
 
@@ -47,9 +55,28 @@ class App extends Component {
     // destructuring 
     return (
       <>
-        <header >
-          <p>hola</p>
-        </header>
+        <Router>
+          <nav >
+            <ul>
+              <li>
+                <Link to="/">List</Link>
+              </li>
+              <li>
+                <Link to="/add">Add</Link>
+              </li>
+              <li>
+                <Link to="/edit">Edit</Link>
+              </li>
+            </ul>
+          </nav>
+          <Switch>
+            <Route exact path="/" component={() => <PatientsList />} />
+            <Route exact path="/add" component={() => <AddPatient />} />
+            <Route exact path="/edit" component={() => <EditPatient patient={this.state.patient} />} />
+          </Switch>
+
+        </Router>
+
       </>
     );
   }
