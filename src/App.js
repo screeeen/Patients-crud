@@ -3,11 +3,15 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
 } from "react-router-dom";
 import AddPatient from './components/AddPatient'
 import EditPatient from './components/EditPatient'
 import PatientsList from './components/PatientsList'
+import './index.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHome } from '@fortawesome/free-solid-svg-icons'
+
 
 class App extends Component {
 
@@ -63,19 +67,19 @@ class App extends Component {
   render() {
     const { patientList } = this.state;
     return (
-      <>
+      <div className='container'>
         <Router>
           <nav >
             <ul>
               <li>
-                <Link to="/">List</Link>
+                <Link to="/"><p><FontAwesomeIcon icon={faHome} size='lg'/></p></Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to="/add">Add</Link>
-              </li>
-              <li>
+              </li> */}
+              {/* <li>
                 <Link to="/edit">Edit</Link>
-              </li>
+              </li> */}
             </ul>
           </nav>
           <Switch>
@@ -83,9 +87,8 @@ class App extends Component {
             <Route exact path="/add" component={() => <AddPatient addNewPatient={this.addNewPatient} />} />
             <Route exact path="/edit" component={() => <EditPatient patient={this.state.patient} editPatient={this.editPatient} />} />
           </Switch>
-          <hr />
         </Router>
-      </>
+      </div>
     );
   }
 }

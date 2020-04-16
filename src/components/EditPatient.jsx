@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import { withRouter } from "react-router-dom";
 import DayPickerInput from 'react-day-picker/DayPickerInput';
-import 'react-day-picker/lib/style.css';
 import { now } from 'moment';
+import 'react-day-picker/lib/style.css';
 import {
   formatDate,
   parseDate,
 } from 'react-day-picker/moment';
+import '../index.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser,faCheck, faUserEdit } from '@fortawesome/free-solid-svg-icons'
 
 
 class EditPatient extends Component {
@@ -25,11 +28,11 @@ class EditPatient extends Component {
     this.props.history.push('/');
   }
 
-  calculateAge(dob){
+  calculateAge(dob) {
     var diff_ms = Date.now() - dob.getTime();
-    var age_dt = new Date(diff_ms); 
+    var age_dt = new Date(diff_ms);
     const age = Math.abs(age_dt.getUTCFullYear() - 1970);
-    this.setState({age});
+    this.setState({ age });
   }
 
   handleInputChange(event) {
@@ -44,55 +47,48 @@ class EditPatient extends Component {
       isEmpty: !input.value.trim(),
       isDisabled: modifiers.disabled === true,
     });
-    this.calculateAge (birth);
+    birth && this.calculateAge(birth);
   }
 
   render() {
     const { birth, isDisabled, isEmpty } = this.state;
     return (
       <>
+        <h3>Editing <span>{this.state.name} {this.state.surname}</span></h3>
         <form onSubmit={this.handleFormSubmit}>
-          <div>
-            <label>Name</label>
+
+        <p><FontAwesomeIcon icon={faUserEdit} color='slategrey' /></p>
+          <div className="input-box">
             <input type="text" required name="name" value={this.state.name} onChange={e => this.handleInputChange(e)} />
           </div>
 
-          <div>
-            <label>Surname</label>
-            <input type="text" name="surname" value={this.state.surname} onChange={e => this.handleInputChange(e)} />
+          <div className="input-box">
+            <input type="text" required name="surname" value={this.state.surname} onChange={e => this.handleInputChange(e)} />
           </div>
 
-          {/* <div>
-            <label>Age</label>
-            <input type="number" name="age" value={this.state.age} onChange={e => this.handleInputChange(e)} />
-          </div> */}
+          <div className="input-box">
+              {isEmpty && 'Edit birthday'}
+              {!isEmpty && !birth && 'This day is invalid'}
+              {birth && isDisabled && 'This day is disabled'}
+              {/* {birth &&
+                !isDisabled &&
+                `You chose ${birth.toLocaleDateString()}`} */}
 
-          <div>
-          <p>
-            {isEmpty && 'Birthday:'}
-            {!isEmpty && !birth && 'This day is invalid'}
-            {birth && isDisabled && 'This day is disabled'}
-            {birth &&
-              !isDisabled &&
-              `You chose ${birth.toLocaleDateString()}`}
-          </p>
-          <DayPickerInput
-            formatDate={formatDate}
-            parseDate={parseDate}
-            placeholder={`${formatDate(new Date())}`}
-            value={birth}
-            onDayChange={this.handleDayChange}
-            dayPickerProps={{
-              initialMonth: new Date(2001, 1),
-              selectedDays: birth,
-              disabledDays: {
-                after: new Date(now), // substract 18 years
-              },
-            }}
-          />
-        </div>
-
-          <button>Done with Editing</button>
+            <DayPickerInput
+              formatDate={formatDate}
+              parseDate={parseDate}
+              value={birth}
+              onDayChange={this.handleDayChange}
+              dayPickerProps={{
+                initialMonth: new Date(2001, 1),
+                selectedDays: birth,
+                disabledDays: {
+                  after: new Date(now), // substract 18 years
+                },
+              }}
+            />
+          </div>
+          <button className="end-form"><p><FontAwesomeIcon icon={faCheck} size='lg'/></p></button>
         </form>
       </>
     )

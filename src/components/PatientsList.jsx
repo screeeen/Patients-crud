@@ -1,11 +1,16 @@
 import React from 'react'
 import { Link,withRouter } from "react-router-dom";
 import Moment from 'react-moment'
+import '../index.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEdit,faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons'
+
 const PatientsList = ({ patientList, editPatient, deletePatient, addNewPatient,history }) => {
   console.log(patientList);
 
   return (    
     <>
+    <h3>Patients List</h3>
       <table>
         <thead>
           <tr>
@@ -13,6 +18,7 @@ const PatientsList = ({ patientList, editPatient, deletePatient, addNewPatient,h
             <th>Name</th>
             <th>Surname</th>
             <th>Age</th>
+            <th>Birth Date</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -21,7 +27,7 @@ const PatientsList = ({ patientList, editPatient, deletePatient, addNewPatient,h
             patientList.length > 0 ? (
               patientList.map(patient => (
                 <tr key={patient.id}>
-                  <td>{patient.id}</td>
+                  <td className='id'>{patient.id}</td>
                   <td>{patient.name}</td>
                   <td>{patient.surname}</td>
                   <td>{patient.age}</td>
@@ -29,10 +35,9 @@ const PatientsList = ({ patientList, editPatient, deletePatient, addNewPatient,h
                   <td><button onClick={() => history.push({
                     pathname:'/edit',
                     state:{patient}
-                    })}>edit</button></td>
+                    })}><p><FontAwesomeIcon icon={faEdit} size='lg'/></p></button></td>
 
-
-                  <td><button onClick={() => { deletePatient(patient.id) }}>delete</button></td>
+                  <td><button onClick={() => { deletePatient(patient.id) }}><p><FontAwesomeIcon icon={faTrashAlt} size='lg'/></p></button></td>
                 </tr>
               )
               )
@@ -44,7 +49,9 @@ const PatientsList = ({ patientList, editPatient, deletePatient, addNewPatient,h
           }
         </tbody>
       </table >
-      <Link to="/add">Register new patient</Link>
+      <div className="register-area">
+      <Link to="/add"><p><FontAwesomeIcon icon={faPlus} size='lg'/> Register new patient </p></Link>
+      </div>
     </>
   )
 }
