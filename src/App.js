@@ -5,6 +5,7 @@ import {
   Route,
   Link,
 } from "react-router-dom";
+import MockData from './data/MockData'
 import AddPatient from './components/AddPatient'
 import EditPatient from './components/EditPatient'
 import PatientsList from './components/PatientsList'
@@ -29,15 +30,8 @@ class App extends Component {
   }
 
 
-  mockData = [
-    { id: 0, name: 'Manuel', surname: 'Pereira', age: 30, birth: new Date(1989, 1) },
-    { id: 1, name: 'Eddo', surname: 'Park', age: 51, birth: new Date(1968, 1) },
-    { id: 2, name: 'Clark', surname: 'Syntherion', age: 45, birth: new Date(1974, 1) },
-    { id: 3, name: 'Aphex', surname: 'Singlar', age: 90, birth: new Date(1930, 1) },
-  ]
-
   componentDidMount() {
-    this.setState({ patientList: this.mockData });
+    this.setState({ patientList: MockData });
   }
 
   getLastId() {

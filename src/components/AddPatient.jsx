@@ -9,7 +9,7 @@ import {
 } from 'react-day-picker/moment';
 import '../index.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser,faCheck, faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
+import { faUser,faCheck } from '@fortawesome/free-solid-svg-icons'
 
 
 class AddPatient extends Component {
@@ -63,7 +63,7 @@ class AddPatient extends Component {
 
 
   render() {
-    const { birth, isDisabled, isEmpty } = this.state;
+    const { birth } = this.state;
 
     return (
       <>

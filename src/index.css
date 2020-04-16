@@ -107,19 +107,8 @@ button {
     border-radius: 50px;
     text-align: center;
     box-shadow: 2px 2px 3px #999;
+    margin: auto;
 }
-
-
-/* .end-form {
-    width: 100%;
-    background-color: rgb(210, 202, 255);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 10px auto;
-    border-radius: 90px;
-} */
 
 button:hover {
     color: darkslategray;

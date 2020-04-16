@@ -9,7 +9,7 @@ import {
 } from 'react-day-picker/moment';
 import '../index.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser,faCheck, faUserEdit } from '@fortawesome/free-solid-svg-icons'
+import { faCheck, faUserEdit } from '@fortawesome/free-solid-svg-icons'
 
 
 class EditPatient extends Component {
