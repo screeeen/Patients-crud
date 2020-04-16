@@ -1,6 +1,6 @@
 import React from 'react'
 
-const PatientsList = ({ patientList }) => {
+const PatientsList = ({ patientList, editPatient, deletePatient, addNewPatient }) => {
   return (
     <table>
       <thead>
@@ -21,15 +21,15 @@ const PatientsList = ({ patientList }) => {
                 <td>{patient.name}</td>
                 <td>{patient.surname}</td>
                 <td>{patient.age}</td>
-                <td><button onClick={() => { }}>edit</button></td>
-                <td><button onClick={() => { }}>delete</button></td>
+                <td><button onClick={() => { editPatient(patient) }}>edit</button></td>
+                <td><button onClick={() => { deletePatient(patient.id) }}>delete</button></td>
               </tr>
             )
             )
           ) : (
               <tr>
                 <td>No patients yet.</td>
-                <td><button onClick={() => { }}>Add Patient</button></td>
+                <td><button onClick={() => { addNewPatient() }}>Add Patient</button></td>
               </tr>
             )
         }

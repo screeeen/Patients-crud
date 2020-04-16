@@ -14,10 +14,10 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      id: null,
-      name: '',
-      surname: '',
-      age: null,
+      id: undefined,
+      // name: '',
+      // surname: '',
+      // age: undefined,
       patient: {},
       patientList: [],
       editing: false
@@ -28,7 +28,6 @@ class App extends Component {
     this.editPatient = this.editPatient.bind(this);
     this.setEditingFlag = this.setEditingFlag.bind(this);
     this.updatePatientDetails = this.updatePatientDetails.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
 
   }
 
@@ -44,29 +43,25 @@ class App extends Component {
     this.setState({ patientList: this.mockData });
   }
 
-  handleInputChange(event) {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
 
-    this.setState({
-      [name]: value
-    })
-  }
 
-  addNewPatient(event) {
-
+  addNewPatient(patient) {
+    patient.id = this.state.patientList.length;
+    this.setState({ patientList: [...this.state.patientList, patient] });
   }
 
   deletePatient(id) {
+    console.log("delete p", id);
 
   }
 
   editPatient(patient) {
-
+    console.log("edit p", patient);
+    this.setEditingFlag(true);
   }
 
   setEditingFlag(value) {
+    console.log("setting flat: ", value);
 
   }
 
@@ -80,6 +75,7 @@ class App extends Component {
 
     // destructuring 
     const { patientList } = this.state;
+
     return (
       <>
         <Router>
@@ -97,13 +93,13 @@ class App extends Component {
             </ul>
           </nav>
           <Switch>
-            <Route exact path="/" component={() => <PatientsList patientList={patientList} />} />
-            <Route exact path="/add" component={() => <AddPatient />} />
+            <Route exact path="/" component={() => <PatientsList patientList={patientList} editPatient={this.editPatient} deletePatient={this.deletePatient} addNewPatient={this.addNewPatient} />} />
+            <Route exact path="/add" component={() => <AddPatient addNewPatient={this.addNewPatient} />} />
             <Route exact path="/edit" component={() => <EditPatient patient={this.state.patient} />} />
           </Switch>
-          <button onClick={() => { }}>add</button>
+          <hr />
+          <Link to="/add">Register new patient</Link>
         </Router>
-
       </>
     );
   }
