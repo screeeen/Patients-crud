@@ -15,9 +15,6 @@ class App extends Component {
     super();
     this.state = {
       id: undefined,
-      // name: '',
-      // surname: '',
-      // age: undefined,
       patient: {},
       patientList: [],
       editing: false
@@ -43,14 +40,24 @@ class App extends Component {
     this.setState({ patientList: this.mockData });
   }
 
+  getLastId() {
+    const lastIndex = this.state.patientList.length-1;
+    return this.state.patientList[lastIndex].id + 1;
+  }
+
   addNewPatient(patient) {
-    patient.id = this.state.patientList.length;
+    patient.id = this.getLastId();
     this.setState({ patientList: [...this.state.patientList, patient] });
   }
 
+  editPatient(updatedPatient) {
+    this.setEditingFlag(true);
+    const patientList = this.state.patientList.map((patient) => (patient.id === updatedPatient.id ? updatedPatient : patient));
+    this.setState({ patientList: patientList });
+  }
+
   deletePatient(id) {
-    console.log("delete p", id);
-    const patientList = this.state.patientList.filter(item => item.id !== id);
+    const patientList = this.state.patientList.filter(patient => patient.id !== id);
     this.setState({ patientList: patientList });
     if (this.state.editing === true) {
       window.location.reload();
@@ -58,14 +65,8 @@ class App extends Component {
 
   }
 
-  editPatient(patient) {
-    console.log("edit p", patient);
-    this.setEditingFlag(true);
-  }
-
   setEditingFlag(value) {
     console.log("setting flat: ", value);
-
   }
 
 
@@ -98,7 +99,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={() => <PatientsList patientList={patientList} editPatient={this.editPatient} deletePatient={this.deletePatient} addNewPatient={this.addNewPatient} />} />
             <Route exact path="/add" component={() => <AddPatient addNewPatient={this.addNewPatient} />} />
-            <Route exact path="/edit" component={() => <EditPatient patient={this.state.patient} />} />
+            <Route exact path="/edit" component={() => <EditPatient patient={this.state.patient} editPatient={this.editPatient} />} />
           </Switch>
           <hr />
         </Router>

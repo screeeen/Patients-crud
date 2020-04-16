@@ -1,7 +1,7 @@
 import React from 'react'
-import { Link } from "react-router-dom";
+import { Link,withRouter } from "react-router-dom";
 
-const PatientsList = ({ patientList, editPatient, deletePatient, addNewPatient }) => {
+const PatientsList = ({ patientList, editPatient, deletePatient, addNewPatient,history }) => {
   return (
     <>
       <table>
@@ -23,7 +23,12 @@ const PatientsList = ({ patientList, editPatient, deletePatient, addNewPatient }
                   <td>{patient.name}</td>
                   <td>{patient.surname}</td>
                   <td>{patient.age}</td>
-                  <td><button onClick={() => { editPatient(patient) }}>edit</button></td>
+                  <td><button onClick={() => history.push({
+                    pathname:'/edit',
+                    state:{patient}
+                    })}>edit</button></td>
+
+
                   <td><button onClick={() => { deletePatient(patient.id) }}>delete</button></td>
                 </tr>
               )
@@ -41,6 +46,6 @@ const PatientsList = ({ patientList, editPatient, deletePatient, addNewPatient }
   )
 }
 
-export default PatientsList
+export default withRouter(PatientsList)
 
 
