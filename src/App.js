@@ -43,8 +43,6 @@ class App extends Component {
     this.setState({ patientList: this.mockData });
   }
 
-
-
   addNewPatient(patient) {
     patient.id = this.state.patientList.length;
     this.setState({ patientList: [...this.state.patientList, patient] });
@@ -52,6 +50,11 @@ class App extends Component {
 
   deletePatient(id) {
     console.log("delete p", id);
+    const patientList = this.state.patientList.filter(item => item.id !== id);
+    this.setState({ patientList: patientList });
+    if (this.state.editing === true) {
+      window.location.reload();
+    }
 
   }
 
@@ -98,7 +101,6 @@ class App extends Component {
             <Route exact path="/edit" component={() => <EditPatient patient={this.state.patient} />} />
           </Switch>
           <hr />
-          <Link to="/add">Register new patient</Link>
         </Router>
       </>
     );
