@@ -15,15 +15,20 @@ class App extends Component {
     super();
     this.state = {
       id: null,
-      userId: 0,
       name: '',
       surname: '',
-      age: 0,
+      age: null,
       patient: {},
       patientList: [],
       editing: false
     }
 
+    this.addNewPatient = this.addNewPatient.bind(this);
+    this.deletePatient = this.deletePatient.bind(this);
+    this.editPatient = this.editPatient.bind(this);
+    this.setEditingFlag = this.setEditingFlag.bind(this);
+    this.updatePatientDetails = this.updatePatientDetails.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
 
   }
 
@@ -35,11 +40,19 @@ class App extends Component {
     { id: 3, name: 'Aphex', surname: 'Singlar', age: 93 },
   ]
 
-  componentDidMount () {
-    this.setState ({patientList:this.mockData});
+  componentDidMount() {
+    this.setState({ patientList: this.mockData });
   }
 
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
 
+    this.setState({
+      [name]: value
+    })
+  }
 
   addNewPatient(event) {
 
@@ -66,6 +79,7 @@ class App extends Component {
   render() {
 
     // destructuring 
+    const { patientList } = this.state;
     return (
       <>
         <Router>
@@ -83,11 +97,11 @@ class App extends Component {
             </ul>
           </nav>
           <Switch>
-            <Route exact path="/" component={() => <PatientsList />} />
+            <Route exact path="/" component={() => <PatientsList patientList={patientList} />} />
             <Route exact path="/add" component={() => <AddPatient />} />
             <Route exact path="/edit" component={() => <EditPatient patient={this.state.patient} />} />
           </Switch>
-
+          <button onClick={() => { }}>add</button>
         </Router>
 
       </>
