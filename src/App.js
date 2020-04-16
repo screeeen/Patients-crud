@@ -17,23 +17,19 @@ class App extends Component {
       id: undefined,
       patient: {},
       patientList: [],
-      editing: false
     }
 
     this.addNewPatient = this.addNewPatient.bind(this);
     this.deletePatient = this.deletePatient.bind(this);
     this.editPatient = this.editPatient.bind(this);
-    this.setEditingFlag = this.setEditingFlag.bind(this);
-    this.updatePatientDetails = this.updatePatientDetails.bind(this);
-
   }
 
 
   mockData = [
-    { id: 0, name: 'Manuel', surname: 'Pereira', age: 30 },
-    { id: 1, name: 'Eddo', surname: 'Park', age: 53 },
-    { id: 2, name: 'Clark', surname: 'Syntherion', age: 45 },
-    { id: 3, name: 'Aphex', surname: 'Singlar', age: 93 },
+    { id: 0, name: 'Manuel', surname: 'Pereira', age: 30, birth: new Date(1989, 1) },
+    { id: 1, name: 'Eddo', surname: 'Park', age: 51, birth: new Date(1968, 1) },
+    { id: 2, name: 'Clark', surname: 'Syntherion', age: 45, birth: new Date(1974, 1) },
+    { id: 3, name: 'Aphex', surname: 'Singlar', age: 90, birth: new Date(1930, 1) },
   ]
 
   componentDidMount() {
@@ -41,7 +37,8 @@ class App extends Component {
   }
 
   getLastId() {
-    const lastIndex = this.state.patientList.length-1;
+    if (this.state.patientList.length - 1 <= 0) return 0;
+    const lastIndex = this.state.patientList.length - 1;
     return this.state.patientList[lastIndex].id + 1;
   }
 
@@ -51,7 +48,6 @@ class App extends Component {
   }
 
   editPatient(updatedPatient) {
-    this.setEditingFlag(true);
     const patientList = this.state.patientList.map((patient) => (patient.id === updatedPatient.id ? updatedPatient : patient));
     this.setState({ patientList: patientList });
   }
@@ -62,24 +58,10 @@ class App extends Component {
     if (this.state.editing === true) {
       window.location.reload();
     }
-
   }
-
-  setEditingFlag(value) {
-    console.log("setting flat: ", value);
-  }
-
-
-  updatePatientDetails(event) {
-
-  }
-
 
   render() {
-
-    // destructuring 
     const { patientList } = this.state;
-
     return (
       <>
         <Router>

@@ -1,8 +1,10 @@
 import React from 'react'
 import { Link,withRouter } from "react-router-dom";
-
+import Moment from 'react-moment'
 const PatientsList = ({ patientList, editPatient, deletePatient, addNewPatient,history }) => {
-  return (
+  console.log(patientList);
+
+  return (    
     <>
       <table>
         <thead>
@@ -15,7 +17,7 @@ const PatientsList = ({ patientList, editPatient, deletePatient, addNewPatient,h
           </tr>
         </thead>
         <tbody>
-          {
+          {            
             patientList.length > 0 ? (
               patientList.map(patient => (
                 <tr key={patient.id}>
@@ -23,6 +25,7 @@ const PatientsList = ({ patientList, editPatient, deletePatient, addNewPatient,h
                   <td>{patient.name}</td>
                   <td>{patient.surname}</td>
                   <td>{patient.age}</td>
+                  <td><Moment format="DD.MM.YYYY">{patient.birth}</Moment></td>
                   <td><button onClick={() => history.push({
                     pathname:'/edit',
                     state:{patient}
