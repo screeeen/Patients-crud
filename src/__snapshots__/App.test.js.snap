@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`list is displayed 1`] = `<withRouter(PatientsList) />`;
+
+exports[`user can be created 1`] = `
+Object {
+  "age": 45,
+  "birth": 2020-04-17T01:55:46.458Z,
+  "id": 16,
+  "name": "LeBron James",
+  "surname": "paqueton",
+}
+`;
+
+exports[`user can be decribed 1`] = `
+Object {
+  "age": 45,
+  "birth": 2020-04-17T01:57:00.926Z,
+  "id": 8,
+  "name": "LeBron James",
+  "surname": "paqueton",
+}
+`;
+
+exports[`user cant be less than 0 years old 1`] = `
+Object {
+  "age": -2,
+  "birth": 2020-04-17T01:57:00.930Z,
+  "id": 19,
+  "name": "LeBron James",
+  "surname": "paqueton",
+}
+`;

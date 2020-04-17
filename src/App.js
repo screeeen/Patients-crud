@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -14,77 +14,52 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome } from '@fortawesome/free-solid-svg-icons'
 
 
-class App extends Component {
+const App = () => {
 
-  constructor() {
-    super();
-    this.state = {
-      id: undefined,
-      patient: {},
-      patientList: [],
-    }
+  const [id, setId] = useState(undefined);
+  const [patient, setPatient] = useState({});
+  const [patientList, setPatientList] = useState(MockData);
 
-    this.addNewPatient = this.addNewPatient.bind(this);
-    this.deletePatient = this.deletePatient.bind(this);
-    this.editPatient = this.editPatient.bind(this);
+
+  const getLastId = () => {
+    if (patientList.length - 1 <= 0) return 0;
+    const lastIndex = patientList.length - 1;
+    return patientList[lastIndex].id + 1;
   }
 
-
-  componentDidMount() {
-    this.setState({ patientList: MockData });
+  const addNewPatient = (patient) => {
+    patient.id = getLastId();
+    setPatientList([...patientList,patient])
   }
 
-  getLastId() {
-    if (this.state.patientList.length - 1 <= 0) return 0;
-    const lastIndex = this.state.patientList.length - 1;
-    return this.state.patientList[lastIndex].id + 1;
+  const editPatient = (updatedPatient)=> {
+    const updatedPatientList = patientList.map((patient) => (patient.id === updatedPatient.id ? updatedPatient : patient));
+    setPatientList(updatedPatientList);
   }
-
-  addNewPatient(patient) {
-    patient.id = this.getLastId();
-    this.setState({ patientList: [...this.state.patientList, patient] });
+  
+  const deletePatient = (id) => {
+    const patientListWithDeletion = patientList.filter(patient => patient.id !== id);
+    setPatientList(patientListWithDeletion);
   }
-
-  editPatient(updatedPatient) {
-    const patientList = this.state.patientList.map((patient) => (patient.id === updatedPatient.id ? updatedPatient : patient));
-    this.setState({ patientList: patientList });
-  }
-
-  deletePatient(id) {
-    const patientList = this.state.patientList.filter(patient => patient.id !== id);
-    this.setState({ patientList: patientList });
-    if (this.state.editing === true) {
-      window.location.reload();
-    }
-  }
-
-  render() {
-    const { patientList } = this.state;
+    
     return (
       <div className='container'>
         <Router>
           <nav >
             <ul>
               <li>
-                <Link to="/"><p><FontAwesomeIcon icon={faHome} size='lg'/></p></Link>
+                <Link to="/"><p><FontAwesomeIcon className='icon' icon={faHome} size='4x' color='turquoise' /></p></Link>
               </li>
-              {/* <li>
-                <Link to="/add">Add</Link>
-              </li> */}
-              {/* <li>
-                <Link to="/edit">Edit</Link>
-              </li> */}
             </ul>
           </nav>
           <Switch>
-            <Route exact path="/Patients-crud" component={() => <PatientsList patientList={patientList} editPatient={this.editPatient} deletePatient={this.deletePatient} addNewPatient={this.addNewPatient} />} />
-            <Route exact path="/add" component={() => <AddPatient addNewPatient={this.addNewPatient} />} />
-            <Route exact path="/edit" component={() => <EditPatient patient={this.state.patient} editPatient={this.editPatient} />} />
+            <Route exact path="/" component={() => <PatientsList patientList={patientList} editPatient={editPatient} deletePatient={deletePatient} addNewPatient={addNewPatient} />} />
+            <Route exact path="/add" component={() => <AddPatient addNewPatient={addNewPatient} />} />
+            <Route exact path="/edit" component={() => <EditPatient patient={patient} editPatient={editPatient} />} />
           </Switch>
         </Router>
       </div>
     );
   }
-}
 
 export default App;

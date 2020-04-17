@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit,faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons'
 
 const PatientsList = ({ patientList, editPatient, deletePatient, addNewPatient,history }) => {
-  console.log(patientList);
 
   return (    
     <>
@@ -50,7 +49,7 @@ const PatientsList = ({ patientList, editPatient, deletePatient, addNewPatient,h
         </tbody>
       </table >
       <div className="register-area">
-      <Link to="/add"><p><FontAwesomeIcon icon={faPlus} size='lg'/> Register new patient </p></Link>
+      <Link to="/add"><p><FontAwesomeIcon icon={faPlus} size='4x'/></p></Link>
       </div>
     </>
   )

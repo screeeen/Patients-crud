@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import { withRouter } from "react-router-dom";
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import { now } from 'moment';
@@ -9,18 +9,12 @@ import {
 } from 'react-day-picker/moment';
 import '../index.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser,faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faCheck } from '@fortawesome/free-solid-svg-icons'
+import CalculateAge from './CalculateAge'
 
 
-class AddPatient extends Component {
-  constructor(props) {
-    super(props);
-    this.state = this.initialFormState
-    this.handleDayChange = this.handleDayChange.bind(this);
-  };
-
-
-  initialFormState = {
+const AddPatient = ({ addNewPatient,history }) => {
+  const initialState = {
     name: '',
     surname: '',
     age: undefined,
@@ -29,79 +23,61 @@ class AddPatient extends Component {
     isDisabled: false,
   }
 
+  const [user, setUser] = useState(initialState);
 
-  handleFormSubmit = (event) => {
-    event.preventDefault();
-    this.props.addNewPatient(this.state);
-    this.setState(this.initialFormState)
-    this.props.history.push('/');
-  }
-
-  calculateAge(dob) {
-    var diff_ms = Date.now() - dob.getTime();
-    var age_dt = new Date(diff_ms);
-    const age = Math.abs(age_dt.getUTCFullYear() - 1970);
-    this.setState({ age });
-  }
-
-  handleInputChange(event) {
+  const handleInputChange = event => {
     const { value, name } = event.target;
-    this.setState({ [name]: value });
+    setUser({ ...user, [name]: value });
   }
 
-  handleDayChange(birth, modifiers, dayPickerInput) {
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    addNewPatient(user);
+    setUser(initialState);
+    history.push('/');
+  }
+
+  const handleDayChange = (birth, modifiers, dayPickerInput) => {
     const input = dayPickerInput.getInput();
-    this.setState({
-      birth,
-      isEmpty: !input.value.trim(),
-      isDisabled: modifiers.disabled === true,
-    });
-    birth && this.calculateAge(birth);
+    const age = birth && CalculateAge(birth);
+    setUser({ ...user, birth, age, isEmpty: !input.value.trim(), isDisabled: modifiers.disabled === true });
   }
-
-
-
-
-  render() {
-    const { birth } = this.state;
 
     return (
       <>
         <h3>Register a new patient</h3>
-        <form onSubmit={this.handleFormSubmit}>
 
+        <form onSubmit={handleFormSubmit}>
           <p><FontAwesomeIcon icon={faUser} color='slategrey' /></p>
+
           <div className="input-box">
-            <input type="text" required name="name" placeholder="Enter patients name..." value={this.state.name} onChange={e => this.handleInputChange(e)} />
+            <input type="text" required name="name" placeholder="Enter patients name..." value={user.name} onChange={handleInputChange} />
           </div>
 
           <div className="input-box">
-            <input type="text" required name="surname" placeholder="...surname" value={this.state.surname} onChange={e => this.handleInputChange(e)} />
+            <input type="text" required name="surname" placeholder="...surname" value={user.surname} onChange={e => handleInputChange(e)} />
           </div>
 
           <div className="input-box">
-      
             <DayPickerInput
               formatDate={formatDate}
               parseDate={parseDate}
               placeholder={'Pick a Date'}
-              value={birth}
-              onDayChange={this.handleDayChange}
+              value={user.birth}
+              onDayChange={handleDayChange}
               dayPickerProps={{
                 initialMonth: new Date(2001, 1),
-                selectedDays: birth,
+                selectedDays: user.birth,
                 disabledDays: {
                   after: new Date(now), // substract 18 years
                 },
               }}
             />
-            {/* <FontAwesomeIcon icon={faCalendarAlt} size='sm'/> */}
           </div>
-            <button className="end-form"><p><FontAwesomeIcon icon={faCheck} size='lg'/></p></button>
+          <button className="end-form"><p><FontAwesomeIcon icon={faCheck} size='4x' /></p></button>
         </form >
       </>
     )
   }
-}
 
 export default withRouter(AddPatient) 
