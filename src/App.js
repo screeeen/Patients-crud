@@ -48,12 +48,12 @@ const App = () => {
           <nav >
             <ul>
               <li>
-                <Link to="/"><p><FontAwesomeIcon className='icon' icon={faHome} size='4x' color='turquoise' /></p></Link>
+                <Link to="/Patients-crud"><p><FontAwesomeIcon className='icon' icon={faHome} size='4x' color='turquoise' /></p></Link>
               </li>
             </ul>
           </nav>
           <Switch>
-            <Route exact path="/" component={() => <PatientsList patientList={patientList} editPatient={editPatient} deletePatient={deletePatient} addNewPatient={addNewPatient} />} />
+            <Route exact path="/Patients-crud" component={() => <PatientsList patientList={patientList} editPatient={editPatient} deletePatient={deletePatient} addNewPatient={addNewPatient} />} />
             <Route exact path="/add" component={() => <AddPatient addNewPatient={addNewPatient} />} />
             <Route exact path="/edit" component={() => <EditPatient patient={patient} editPatient={editPatient} />} />
           </Switch>
