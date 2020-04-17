@@ -1,30 +1,40 @@
-# Patients crud 
+# Patients CRUD app 
 
 ### [View the demo](https://screeeen.github.io/Patients-crud/)
 
-### Comments
+### `npm start` to run
+
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+
+### `npm test`
+
+Launches the test runner in the interactive watch mode.<br />
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
 
 ### component list
 
-*[x] App with routes and basic navigation
-*[] MockData with a patients json
-*[] PatientsList displays a list of cells
-*[] AddPatient form to register a new patient
-*[] EditPatient form to edit a patient
-*[] CalculateAge utility 
+* App with routes and basic navigation
+* MockData with a patients json
+* PatientsList displays a list of cells
+* AddPatient form to register a new patient
+* EditPatient form to edit a patient
+* CalculateAge utility 
 
 #### Things I did
-*[x] App 
+* App 
   * Routes and basic navigation
-*[] MockData
+* MockData
   *  patients JSON
-*[] PatientsList
+* PatientsList
   *  displays a list of cells
-*[] AddPatient
+* AddPatient
   *  form to register a new patient
-*[] EditPatient 
+* EditPatient 
   * form to edit a patient, receives user data as a prop, populates the form fields and onSubmit wrap the state data and lift it to the App state where the array of patients lives.
-*[] CalculateAge utility 
+* CalculateAge utility 
   *  given a date, calculates the patients age
 
 #### Libraries
@@ -51,22 +61,4 @@
 * Refactoring of repeated code
 
 
-### `npm start` to run
-
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm start` to run
-
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
