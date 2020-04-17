@@ -48,7 +48,7 @@ const App = () => {
           <nav >
             <ul>
               <li>
-                <Link to="/"><p><FontAwesomeIcon icon={faHome} size='lg' /></p></Link>
+                <Link to="/"><p><FontAwesomeIcon className='icon' icon={faHome} size='4x' color='turquoise' /></p></Link>
               </li>
             </ul>
           </nav>

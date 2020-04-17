@@ -13,7 +13,6 @@ import { faCheck, faUserEdit } from '@fortawesome/free-solid-svg-icons'
 import CalculateAge from './CalculateAge'
 
 const EditPatient = ({ editPatient, location, history }) => {
-  console.log(location.state.patient);
   const initialeditUser = location.state.patient;
   const [editUser, setEditUser] = useState(initialeditUser)
 
@@ -71,7 +70,7 @@ const EditPatient = ({ editPatient, location, history }) => {
             }}
           />
         </div>
-        <button className="end-form"><p><FontAwesomeIcon icon={faCheck} size='lg' /></p></button>
+        <button className="end-form"><p><FontAwesomeIcon icon={faCheck} size='4x' /></p></button>
       </form>
     </>
   )

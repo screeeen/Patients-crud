@@ -74,7 +74,7 @@ const AddPatient = ({ addNewPatient,history }) => {
               }}
             />
           </div>
-          <button className="end-form"><p><FontAwesomeIcon icon={faCheck} size='lg' /></p></button>
+          <button className="end-form"><p><FontAwesomeIcon icon={faCheck} size='4x' /></p></button>
         </form >
       </>
     )
