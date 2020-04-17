@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Patients-crud/static/css/main.fd2ace10.chunk.css",
-    "main.js": "/Patients-crud/static/js/main.842405e4.chunk.js",
-    "main.js.map": "/Patients-crud/static/js/main.842405e4.chunk.js.map",
+    "main.js": "/Patients-crud/static/js/main.2c1108d0.chunk.js",
+    "main.js.map": "/Patients-crud/static/js/main.2c1108d0.chunk.js.map",
     "runtime-main.js": "/Patients-crud/static/js/runtime-main.14ce1628.js",
     "runtime-main.js.map": "/Patients-crud/static/js/runtime-main.14ce1628.js.map",
     "static/css/2.c6231af7.chunk.css": "/Patients-crud/static/css/2.c6231af7.chunk.css",
     "static/js/2.f4ec7548.chunk.js": "/Patients-crud/static/js/2.f4ec7548.chunk.js",
     "static/js/2.f4ec7548.chunk.js.map": "/Patients-crud/static/js/2.f4ec7548.chunk.js.map",
     "index.html": "/Patients-crud/index.html",
-    "precache-manifest.af4de4f84e24a59b487a2e91c114de40.js": "/Patients-crud/precache-manifest.af4de4f84e24a59b487a2e91c114de40.js",
+    "precache-manifest.27320fd8249dbe3e25d4858d02829cb2.js": "/Patients-crud/precache-manifest.27320fd8249dbe3e25d4858d02829cb2.js",
     "service-worker.js": "/Patients-crud/service-worker.js",
     "static/css/2.c6231af7.chunk.css.map": "/Patients-crud/static/css/2.c6231af7.chunk.css.map",
     "static/css/main.fd2ace10.chunk.css.map": "/Patients-crud/static/css/main.fd2ace10.chunk.css.map",
@@ -20,6 +20,6 @@
     "static/css/2.c6231af7.chunk.css",
     "static/js/2.f4ec7548.chunk.js",
     "static/css/main.fd2ace10.chunk.css",
-    "static/js/main.842405e4.chunk.js"
+    "static/js/main.2c1108d0.chunk.js"
   ]
 }

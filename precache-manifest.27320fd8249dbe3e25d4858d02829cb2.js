@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6f3d7d60b47fdc78926a9a742c6069de",
+    "revision": "a5e78c90d6f9c7cfbe84f5d06f55363c",
     "url": "/Patients-crud/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Patients-crud/static/css/2.c6231af7.chunk.css"
   },
   {
-    "revision": "f6140f84e778ca18dec9",
+    "revision": "c31960045c1e6a17fc91",
     "url": "/Patients-crud/static/css/main.fd2ace10.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Patients-crud/static/js/2.f4ec7548.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f6140f84e778ca18dec9",
-    "url": "/Patients-crud/static/js/main.842405e4.chunk.js"
+    "revision": "c31960045c1e6a17fc91",
+    "url": "/Patients-crud/static/js/main.2c1108d0.chunk.js"
   },
   {
     "revision": "8c40643f40d0334a85a8",
