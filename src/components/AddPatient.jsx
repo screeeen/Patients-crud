@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { withRouter } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import IconCompo from './IconCompo'
 import { faUser, faCheck } from '@fortawesome/free-solid-svg-icons'
 import CalculateAge from './CalculateAge'
-import {EndForm,InputBox,Pe,TitleH3} from './Styles.jsx'
+import {EndForm,TitleH3} from './Styles.jsx'
 import {
   formatDate,
   parseDate,
@@ -45,10 +45,8 @@ const AddPatient = ({ addNewPatient,history }) => {
     return (
       <>
         <TitleH3>Register a new patient</TitleH3>
-
         <form onSubmit={handleFormSubmit}>
-          <Pe><FontAwesomeIcon icon={faUser} color='slategrey' /></Pe>
-
+          <IconCompo icon={faUser} size={'lg'} color={'slategrey'} />
           <InputBoxCompo type="text" required name="name" placeholder="Enter patients name..." value={user.name} onChange={handleInputChange} />
           <InputBoxCompo type="text" required name="surname" placeholder="...surname" value={user.surname} onChange={handleInputChange} />
           <InputBoxCompo type ="dataPicker" formatDate={formatDate} parseDate={parseDate} placeholder={'Pick a Date'} value={user.birth} onDayChange={handleDayChange}
@@ -60,7 +58,9 @@ const AddPatient = ({ addNewPatient,history }) => {
                 }
               }}
             /> 
-          <EndForm><Pe><FontAwesomeIcon icon={faCheck} size='4x' /></Pe></EndForm>
+          <EndForm>
+            <IconCompo icon={faCheck} size={'4x'} />
+            </EndForm>
         </form >
       </>
     )

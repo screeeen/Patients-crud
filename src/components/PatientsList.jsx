@@ -1,10 +1,9 @@
 import React from 'react'
 import { Link, withRouter } from "react-router-dom";
 import Moment from 'react-moment'
-// import '../index.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { RegisterArea, Table, Tr, Td, Th, Button, TitleH3 } from './Styles.jsx'
+import IconCompo from './IconCompo'
 import { faEdit, faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons'
-import {RegisterArea,Table, Tr,Td,Th,Button,TitleH3} from './Styles.jsx'
 
 
 const PatientsList = ({ patientList, editPatient, deletePatient, addNewPatient, history }) => {
@@ -36,8 +35,12 @@ const PatientsList = ({ patientList, editPatient, deletePatient, addNewPatient, 
                   <Td><Button onClick={() => history.push({
                     pathname: '/edit',
                     state: { patient }
-                  })}><p><FontAwesomeIcon icon={faEdit} size='lg' /></p></Button></Td>
-                  <Td><Button onClick={() => { deletePatient(patient.id) }}><p><FontAwesomeIcon icon={faTrashAlt} size='lg' /></p></Button></Td>
+                  })}><IconCompo icon={faEdit} size={'lg'} /></Button></Td>
+                  <Td>
+                    <Button onClick={() => { deletePatient(patient.id) }}>
+                      <IconCompo icon={faTrashAlt} size={'lg'} />
+                    </Button>
+                  </Td>
                 </Tr>
               )
               )
@@ -50,7 +53,9 @@ const PatientsList = ({ patientList, editPatient, deletePatient, addNewPatient, 
         </tbody>
       </Table >
       <RegisterArea>
-        <Link to="/add"><p><FontAwesomeIcon icon={faPlus} size='4x' color='whitesmoke' /></p></Link>
+        <Link to="/add">
+          <IconCompo icon={faPlus} size={'4x'} color={'whitesmoke'} />
+        </Link>
       </RegisterArea>
     </>
   )

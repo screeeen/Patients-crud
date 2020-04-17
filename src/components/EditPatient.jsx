@@ -5,10 +5,10 @@ import {
   parseDate,
 } from 'react-day-picker/moment';
 import { now } from 'moment';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import IconCompo from './IconCompo'
 import { faCheck, faUserEdit } from '@fortawesome/free-solid-svg-icons'
 import CalculateAge from './CalculateAge'
-import {EndForm,InputBox,Pe,TitleH3} from './Styles.jsx'
+import {EndForm,TitleH3} from './Styles.jsx'
 import InputBoxCompo  from './InputBoxCompo';
 
 const EditPatient = ({ editPatient, location, history }) => {
@@ -37,9 +37,7 @@ const EditPatient = ({ editPatient, location, history }) => {
     <>
       <TitleH3>Editing <span>{editUser.name} {editUser.surname}</span></TitleH3>
       <form onSubmit={handleFormSubmit}>
-
-        <p><FontAwesomeIcon icon={faUserEdit} color='slategrey' /></p>
-        
+      <IconCompo icon={faUserEdit} size={'lg'} color={'slategrey'} />
         <InputBoxCompo type="text" required name="name" placeholder="Enter patients name..." value={editUser.name} onChange={handleInputChange} />
         <InputBoxCompo type="text" required name="surname" placeholder="...surname" value={editUser.surname} onChange={handleInputChange} />
         <InputBoxCompo type ="dataPicker" formatDate={formatDate} parseDate={parseDate} value={editUser.birth} onDayChange={handleDayChange}
@@ -51,7 +49,9 @@ const EditPatient = ({ editPatient, location, history }) => {
                 }
               }}
             />
-        <EndForm><Pe><FontAwesomeIcon icon={faCheck} size='4x' /></Pe></EndForm>
+        <EndForm>
+          <IconCompo icon={faCheck} size={'4x'} />
+          </EndForm>
       </form>
     </>
   )

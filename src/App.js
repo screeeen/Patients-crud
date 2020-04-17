@@ -9,9 +9,9 @@ import MockData from './data/MockData'
 import AddPatient from './components/AddPatient'
 import EditPatient from './components/EditPatient'
 import PatientsList from './components/PatientsList'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import IconCompo from './components/IconCompo'
 import { faHome } from '@fortawesome/free-solid-svg-icons'
-import {Container,Nav,Ul,Li,Pe} from './components/Styles.jsx'
+import { Container, Nav, Ul, Li } from './components/Styles.jsx'
 
 
 
@@ -50,7 +50,9 @@ const App = () => {
         <Nav >
           <Ul>
             <Li>
-              <Link to="/Patients-crud"><Pe><FontAwesomeIcon className='icon' icon={faHome} size='4x' color='turquoise' /></Pe></Link>
+              <Link to="/Patients-crud">
+                <IconCompo icon={faHome} size={'4x'} color={'turquoise'} />
+              </Link>
             </Li>
           </Ul>
         </Nav>
