@@ -17,29 +17,49 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 ### component list
 
 * **App** 
+
   * Routes and basic navigation
+
 * **MockData**
+
   *  patients JSON
+
 * **PatientsList**
+
   *  displays a list of cells
+
 * **AddPatient**
+
   *  form to register a new patient
+
 * **EditPatient** 
+
   * form to edit a patient, receives user data as a prop, populates the form fields and onSubmit wrap the state data and lift it to the App state where the array of patients lives.
+
 * **CalculateAge** utility 
+
   *  given a date, calculates the patients age
 
 #### Libraries
 
 * **react-router**
+
   * for the pages, as required in the brief
+
 * **react-day-picker**
+
   * used for the date picker input 
+
 * **moment**
+  
   * used to display date in a comfy way
+  
 * **fontawesome**
+  
   * provides some icons for better ux
+
 * **styled-components**
+  
   * wanted to set it up, not sure if I will have the time...
 
 #### Things I wanted to do
