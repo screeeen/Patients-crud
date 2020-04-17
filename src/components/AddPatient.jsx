@@ -7,13 +7,14 @@ import {
   formatDate,
   parseDate,
 } from 'react-day-picker/moment';
-import '../index.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faCheck } from '@fortawesome/free-solid-svg-icons'
 import CalculateAge from './CalculateAge'
+import {EndForm,InputBox,Input,Pe,TitleH3} from './Styles.jsx'
 
 
 const AddPatient = ({ addNewPatient,history }) => {
+
   const initialState = {
     name: '',
     surname: '',
@@ -34,7 +35,7 @@ const AddPatient = ({ addNewPatient,history }) => {
     event.preventDefault();
     addNewPatient(user);
     setUser(initialState);
-    history.push('/');
+    history.push('/Patients-crud');
   }
 
   const handleDayChange = (birth, modifiers, dayPickerInput) => {
@@ -45,20 +46,20 @@ const AddPatient = ({ addNewPatient,history }) => {
 
     return (
       <>
-        <h3>Register a new patient</h3>
+        <TitleH3>Register a new patient</TitleH3>
 
         <form onSubmit={handleFormSubmit}>
-          <p><FontAwesomeIcon icon={faUser} color='slategrey' /></p>
+          <Pe><FontAwesomeIcon icon={faUser} color='slategrey' /></Pe>
 
-          <div className="input-box">
-            <input type="text" required name="name" placeholder="Enter patients name..." value={user.name} onChange={handleInputChange} />
-          </div>
+          <InputBox>
+            <Input type="text" required name="name" placeholder="Enter patients name..." value={user.name} onChange={handleInputChange} />
+          </InputBox>
 
-          <div className="input-box">
-            <input type="text" required name="surname" placeholder="...surname" value={user.surname} onChange={e => handleInputChange(e)} />
-          </div>
+          <InputBox>
+            <Input type="text" required name="surname" placeholder="...surname" value={user.surname} onChange={e => handleInputChange(e)} />
+          </InputBox>
 
-          <div className="input-box">
+          <InputBox>
             <DayPickerInput
               formatDate={formatDate}
               parseDate={parseDate}
@@ -73,8 +74,8 @@ const AddPatient = ({ addNewPatient,history }) => {
                 },
               }}
             />
-          </div>
-          <button className="end-form"><p><FontAwesomeIcon icon={faCheck} size='4x' /></p></button>
+          </InputBox>
+          <EndForm><Pe><FontAwesomeIcon icon={faCheck} size='4x' /></Pe></EndForm>
         </form >
       </>
     )

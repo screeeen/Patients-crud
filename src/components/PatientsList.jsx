@@ -1,56 +1,57 @@
 import React from 'react'
-import { Link,withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import Moment from 'react-moment'
-import '../index.css'
+// import '../index.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEdit,faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faEdit, faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons'
+import {RegisterArea,Table, Tr,Td,Th,Button,TitleH3} from './Styles.jsx'
 
-const PatientsList = ({ patientList, editPatient, deletePatient, addNewPatient,history }) => {
 
-  return (    
+const PatientsList = ({ patientList, editPatient, deletePatient, addNewPatient, history }) => {
+
+  return (
     <>
-    <h3>Patients List</h3>
-      <table>
+      <TitleH3>Patients List</TitleH3>
+      <Table>
         <thead>
-          <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Surname</th>
-            <th>Age</th>
-            <th>Birth Date</th>
-            <th>Actions</th>
-          </tr>
+          <Tr>
+            <Th>Id</Th>
+            <Th>Name</Th>
+            <Th>Surname</Th>
+            <Th>Age</Th>
+            <Th>Birth Date</Th>
+            <Th>Actions</Th>
+          </Tr>
         </thead>
         <tbody>
-          {            
+          {
             patientList.length > 0 ? (
               patientList.map(patient => (
-                <tr key={patient.id}>
-                  <td className='id'>{patient.id}</td>
-                  <td>{patient.name}</td>
-                  <td>{patient.surname}</td>
-                  <td>{patient.age}</td>
-                  <td><Moment format="DD.MM.YYYY">{patient.birth}</Moment></td>
-                  <td><button onClick={() => history.push({
-                    pathname:'/edit',
-                    state:{patient}
-                    })}><p><FontAwesomeIcon icon={faEdit} size='lg'/></p></button></td>
-
-                  <td><button onClick={() => { deletePatient(patient.id) }}><p><FontAwesomeIcon icon={faTrashAlt} size='lg'/></p></button></td>
-                </tr>
+                <Tr key={patient.id}>
+                  <Td patientId>{patient.id}</Td>
+                  <Td>{patient.name}</Td>
+                  <Td>{patient.surname}</Td>
+                  <Td>{patient.age}</Td>
+                  <Td><Moment format="DD.MM.YYYY">{patient.birth}</Moment></Td>
+                  <Td><Button onClick={() => history.push({
+                    pathname: '/edit',
+                    state: { patient }
+                  })}><p><FontAwesomeIcon icon={faEdit} size='lg' /></p></Button></Td>
+                  <Td><Button onClick={() => { deletePatient(patient.id) }}><p><FontAwesomeIcon icon={faTrashAlt} size='lg' /></p></Button></Td>
+                </Tr>
               )
               )
             ) : (
-                <tr>
+                <Tr>
                   <td>No patients yet.</td>
-                </tr>
+                </Tr>
               )
           }
         </tbody>
-      </table >
-      <div className="register-area">
-      <Link to="/add"><p><FontAwesomeIcon icon={faPlus} size='4x'/></p></Link>
-      </div>
+      </Table >
+      <RegisterArea>
+        <Link to="/add"><p><FontAwesomeIcon icon={faPlus} size='4x' color='whitesmoke' /></p></Link>
+      </RegisterArea>
     </>
   )
 }

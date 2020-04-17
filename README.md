@@ -60,7 +60,7 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 * **styled-components**
   
-  * wanted to set it up, not sure if I will have the time...
+  * wanted to set it up, ~~not sure if I will have the time...~~
 
 #### Things I wanted to do
 

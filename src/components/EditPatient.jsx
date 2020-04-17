@@ -7,10 +7,10 @@ import {
   formatDate,
   parseDate,
 } from 'react-day-picker/moment';
-import '../index.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faUserEdit } from '@fortawesome/free-solid-svg-icons'
 import CalculateAge from './CalculateAge'
+import {EndForm,InputBox,Input,Pe,TitleH3} from './Styles.jsx'
 
 const EditPatient = ({ editPatient, location, history }) => {
   const initialeditUser = location.state.patient;
@@ -19,7 +19,7 @@ const EditPatient = ({ editPatient, location, history }) => {
   const handleFormSubmit = (event) => {
     event.preventDefault();
     editPatient(editUser);
-    history.push('/');
+    history.push('/Patients-crud');
   }
 
   const handleInputChange = (event) => {
@@ -36,19 +36,19 @@ const EditPatient = ({ editPatient, location, history }) => {
 
   return (
     <>
-      <h3>Editing <span>{editUser.name} {editUser.surname}</span></h3>
+      <TitleH3>Editing <span>{editUser.name} {editUser.surname}</span></TitleH3>
       <form onSubmit={handleFormSubmit}>
 
         <p><FontAwesomeIcon icon={faUserEdit} color='slategrey' /></p>
-        <div className="input-box">
-          <input type="text" required name="name" value={editUser.name} onChange={e => handleInputChange(e)} />
-        </div>
+        <InputBox>
+          <Input type="text" required name="name" value={editUser.name} onChange={e => handleInputChange(e)} />
+        </InputBox>
 
-        <div className="input-box">
-          <input type="text" required name="surname" value={editUser.surname} onChange={e => handleInputChange(e)} />
-        </div>
+        <InputBox>
+          <Input type="text" required name="surname" value={editUser.surname} onChange={e => handleInputChange(e)} />
+        </InputBox>
 
-        <div className="input-box">
+        <InputBox>
           {editUser.isEmpty && 'Edit birthday'}
           {!editUser.isEmpty && !editUser.birth && 'This day is invalid'}
           {editUser.birth && editUser.isDisabled && 'This day is disabled'}
@@ -69,8 +69,8 @@ const EditPatient = ({ editPatient, location, history }) => {
               },
             }}
           />
-        </div>
-        <button className="end-form"><p><FontAwesomeIcon icon={faCheck} size='4x' /></p></button>
+        </InputBox>
+        <EndForm><Pe><FontAwesomeIcon icon={faCheck} size='4x' /></Pe></EndForm>
       </form>
     </>
   )
