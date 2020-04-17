@@ -20,6 +20,7 @@ const App = () => {
   const [patient, setPatient] = useState({});
   const [patientList, setPatientList] = useState(MockData);
 
+
   const getLastId = () => {
     if (patientList.length - 1 <= 0) return 0;
     const lastIndex = patientList.length - 1;
@@ -49,12 +50,6 @@ const App = () => {
               <li>
                 <Link to="/"><p><FontAwesomeIcon icon={faHome} size='lg' /></p></Link>
               </li>
-              {/* <li>
-                <Link to="/add">Add</Link>
-              </li> */}
-              {/* <li>
-                <Link to="/edit">Edit</Link>
-              </li> */}
             </ul>
           </nav>
           <Switch>
