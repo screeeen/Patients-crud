@@ -32,7 +32,7 @@ const PatientsList = ({ patientList, editPatient, deletePatient, addNewPatient, 
                   <Td>{patient.name}</Td>
                   <Td>{patient.surname}</Td>
                   <Td>{patient.age}</Td>
-                  <Td><Moment format="DD.MM.YYYY">{patient.birth}</Moment></Td>
+                  <Td><Moment format="MM.DD.YYYY">{patient.birth}</Moment></Td>
                   <Td><Button onClick={() => history.push({
                     pathname: '/edit',
                     state: { patient }
