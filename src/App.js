@@ -77,7 +77,7 @@ class App extends Component {
             </ul>
           </nav>
           <Switch>
-            <Route exact path="/" component={() => <PatientsList patientList={patientList} editPatient={this.editPatient} deletePatient={this.deletePatient} addNewPatient={this.addNewPatient} />} />
+            <Route exact path="/Patients-crud" component={() => <PatientsList patientList={patientList} editPatient={this.editPatient} deletePatient={this.deletePatient} addNewPatient={this.addNewPatient} />} />
             <Route exact path="/add" component={() => <AddPatient addNewPatient={this.addNewPatient} />} />
             <Route exact path="/edit" component={() => <EditPatient patient={this.state.patient} editPatient={this.editPatient} />} />
           </Switch>
