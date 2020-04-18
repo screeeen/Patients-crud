@@ -10,40 +10,37 @@ import { faCheck, faUserEdit } from '@fortawesome/free-solid-svg-icons'
 import CalculateAge from './CalculateAge'
 import {EndForm,TitleH3} from './Styles.jsx'
 import InputBoxCompo  from './InputBoxCompo';
+import {handleInputChange} from './handleInputChange'
 
 const EditPatient = ({ editPatient, location, history }) => {
-  const initialeditUser = location.state.patient;
-  const [editUser, setEditUser] = useState(initialeditUser)
+
+  const initialuser = location.state.patient;
+  const [user, setUser] = useState(initialuser)
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    editPatient(editUser);
+    editPatient(user);
     history.push('/Patients-crud');
-  }
-
-  const handleInputChange = (event) => {
-    const { value, name } = event.target;
-    setEditUser({ ...editUser, [name]: value });
   }
 
   const handleDayChange = (birth, modifiers, dayPickerInput) => {
     const input = dayPickerInput.getInput();
     const age = birth && CalculateAge(birth);
-    setEditUser({ ...editUser, birth, age, isEmpty: !input.value.trim(), isDisabled: modifiers.disabled === true });
+    setUser({ ...user, birth, age, isEmpty: !input.value.trim(), isDisabled: modifiers.disabled === true });
   }
 
 
   return (
     <>
-      <TitleH3>Editing <span>{editUser.name} {editUser.surname}</span></TitleH3>
+      <TitleH3>Editing <span>{user.name} {user.surname}</span></TitleH3>
       <form onSubmit={handleFormSubmit}>
       <IconCompo icon={faUserEdit} size={'lg'} color={'slategrey'} />
-        <InputBoxCompo type="text" required name="name" placeholder="Enter patients name..." value={editUser.name} onChange={handleInputChange} />
-        <InputBoxCompo type="text" required name="surname" placeholder="...surname" value={editUser.surname} onChange={handleInputChange} />
-        <InputBoxCompo type ="dataPicker" formatDate={formatDate} parseDate={parseDate} value={editUser.birth} onDayChange={handleDayChange}
+        <InputBoxCompo type="text" required name="name" placeholder="Enter patients name..." value={user.name} onChange={e => handleInputChange(user,setUser,e)} />
+        <InputBoxCompo type="text" required name="surname" placeholder="...surname" value={user.surname} onChange={e => handleInputChange(user,setUser,e)} />
+        <InputBoxCompo type ="dataPicker" formatDate={formatDate} parseDate={parseDate} value={user.birth} onDayChange={handleDayChange}
               dayPickerProps={{
                 initialMonth: new Date(2001, 1),
-                selectedDays: editUser.birth,
+                selectedDays: user.birth,
                 disabledDays: {
                   after: new Date(now)
                 }

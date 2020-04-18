@@ -10,6 +10,7 @@ import {
 } from 'react-day-picker/moment';
 import { now } from 'moment';
 import InputBoxCompo  from './InputBoxCompo';
+import {handleInputChange} from './handleInputChange'
 
 const AddPatient = ({ addNewPatient,history }) => {
 
@@ -23,11 +24,6 @@ const AddPatient = ({ addNewPatient,history }) => {
   }
 
   const [user, setUser] = useState(initialState);
-
-  const handleInputChange = event => {
-    const { value, name } = event.target;
-    setUser({ ...user, [name]: value });
-  }
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -47,8 +43,8 @@ const AddPatient = ({ addNewPatient,history }) => {
         <TitleH3>Register a new patient</TitleH3>
         <form onSubmit={handleFormSubmit}>
           <IconCompo icon={faUser} size={'lg'} color={'slategrey'} />
-          <InputBoxCompo type="text" required name="name" placeholder="Enter patients name..." value={user.name} onChange={handleInputChange} />
-          <InputBoxCompo type="text" required name="surname" placeholder="...surname" value={user.surname} onChange={handleInputChange} />
+          <InputBoxCompo type="text" required name="name" placeholder="Enter patients name..." value={user.name} onChange={e => handleInputChange(user,setUser,e)} />
+          <InputBoxCompo type="text" required name="surname" placeholder="...surname" value={user.surname} onChange={e => handleInputChange(user,setUser,e)} />
           <InputBoxCompo type ="dataPicker" formatDate={formatDate} parseDate={parseDate} placeholder={'Pick a Date'} value={user.birth} onDayChange={handleDayChange}
               dayPickerProps={{
                 initialMonth: new Date(2001, 1),
