@@ -1,16 +1,12 @@
 import React, { useState } from 'react'
 import { withRouter } from "react-router-dom";
-import IconCompo from './IconCompo'
 import { faUser, faCheck } from '@fortawesome/free-solid-svg-icons'
-import CalculateAge from './CalculateAge'
 import {EndForm,TitleH3} from './Styles.jsx'
-import {
-  formatDate,
-  parseDate,
-} from 'react-day-picker/moment';
+import { formatDate, parseDate} from 'react-day-picker/moment';
 import { now } from 'moment';
+import {handleInputChange,handleDayChange} from './utils'
 import InputBoxCompo  from './InputBoxCompo';
-import {handleInputChange} from './handleInputChange'
+import IconCompo from './IconCompo'
 
 const AddPatient = ({ addNewPatient,history }) => {
 
@@ -32,12 +28,6 @@ const AddPatient = ({ addNewPatient,history }) => {
     history.push('/Patients-crud');
   }
 
-  const handleDayChange = (birth, modifiers, dayPickerInput) => {
-    const input = dayPickerInput.getInput();
-    const age = birth && CalculateAge(birth);
-    setUser({ ...user, birth, age, isEmpty: !input.value.trim(), isDisabled: modifiers.disabled === true });
-  }
-
     return (
       <>
         <TitleH3>Register a new patient</TitleH3>
@@ -45,7 +35,7 @@ const AddPatient = ({ addNewPatient,history }) => {
           <IconCompo icon={faUser} size={'lg'} color={'slategrey'} />
           <InputBoxCompo type="text" required name="name" placeholder="Enter patients name..." value={user.name} onChange={e => handleInputChange(user,setUser,e)} />
           <InputBoxCompo type="text" required name="surname" placeholder="...surname" value={user.surname} onChange={e => handleInputChange(user,setUser,e)} />
-          <InputBoxCompo type ="dataPicker" formatDate={formatDate} parseDate={parseDate} placeholder={'Pick a Date'} value={user.birth} onDayChange={handleDayChange}
+          <InputBoxCompo type ="dataPicker" formatDate={formatDate} parseDate={parseDate} placeholder={'Pick a Date'} value={user.birth} onDayChange={e => handleDayChange(user,setUser,e)}
               dayPickerProps={{
                 initialMonth: new Date(2001, 1),
                 selectedDays: user.birth,
