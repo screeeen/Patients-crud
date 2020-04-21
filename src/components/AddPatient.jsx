@@ -4,11 +4,11 @@ import { faUser, faCheck } from '@fortawesome/free-solid-svg-icons'
 import {EndForm,TitleH3} from './Styles.jsx'
 import { formatDate, parseDate} from 'react-day-picker/moment';
 import { now } from 'moment';
-import {handleInputChange,handleDayChange} from './utils'
+import {handleInputChange,handleDayChange,handleFormSubmit} from './utils'
 import InputBoxCompo  from './InputBoxCompo';
 import IconCompo from './IconCompo'
 
-const AddPatient = ({ addNewPatient,history }) => {
+const AddPatient = ({ updatePatient,history }) => {
 
   const initialState = {
     name: '',
@@ -20,18 +20,11 @@ const AddPatient = ({ addNewPatient,history }) => {
   }
 
   const [user, setUser] = useState(initialState);
-
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
-    addNewPatient(user);
-    setUser(initialState);
-    history.push('/Patients-crud');
-  }
-
+  
     return (
       <>
         <TitleH3>Register a new patient</TitleH3>
-        <form onSubmit={handleFormSubmit}>
+        <form onSubmit={e => handleFormSubmit(user,setUser,updatePatient,history,e)}>
           <IconCompo icon={faUser} size={'lg'} color={'slategrey'} />
           <InputBoxCompo type="text" required name="name" placeholder="Enter patients name..." value={user.name} onChange={e => handleInputChange(user,setUser,e)} />
           <InputBoxCompo type="text" required name="surname" placeholder="...surname" value={user.surname} onChange={e => handleInputChange(user,setUser,e)} />

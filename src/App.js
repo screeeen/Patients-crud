@@ -14,8 +14,6 @@ import { faHome } from '@fortawesome/free-solid-svg-icons'
 import { Container, Nav, Ul, Li } from './components/Styles.jsx'
 
 
-
-
 const App = () => {
 
   const [id, setId] = useState(undefined);
@@ -29,15 +27,17 @@ const App = () => {
     return patientList[lastIndex].id + 1;
   }
 
-  const addNewPatient = (patient) => {
-    patient.id = getLastId();
-    setPatientList([...patientList, patient])
+  const updatePatient = (patientEdit) => {
+
+    if (patientEdit.id === undefined) {
+      (patientEdit.id = getLastId());
+      setPatientList([...patientList, patientEdit])
+    } else {
+      const updatedPatientList = patientList.map((patient) => (patient.id === patientEdit.id ? patientEdit : patient));
+      setPatientList(updatedPatientList);
+    }
   }
 
-  const editPatient = (updatedPatient) => {
-    const updatedPatientList = patientList.map((patient) => (patient.id === updatedPatient.id ? updatedPatient : patient));
-    setPatientList(updatedPatientList);
-  }
 
   const deletePatient = (id) => {
     const patientListWithDeletion = patientList.filter(patient => patient.id !== id);
@@ -57,9 +57,9 @@ const App = () => {
           </Ul>
         </Nav>
         <Switch>
-          <Route exact path="/Patients-crud" component={() => <PatientsList patientList={patientList} editPatient={editPatient} deletePatient={deletePatient} addNewPatient={addNewPatient} />} />
-          <Route exact path="/add" component={() => <AddPatient addNewPatient={addNewPatient} />} />
-          <Route exact path="/edit" component={() => <EditPatient patient={patient} editPatient={editPatient} />} />
+          <Route exact path="/Patients-crud" component={() => <PatientsList patientList={patientList} deletePatient={deletePatient} />} />
+          <Route exact path="/add" component={() => <AddPatient updatePatient={updatePatient} />} />
+          <Route exact path="/edit" component={() => <EditPatient patient={patient} updatePatient={updatePatient} />} />
         </Switch>
       </Router>
     </Container>

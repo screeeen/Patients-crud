@@ -6,7 +6,7 @@ import IconCompo from './IconCompo'
 import { faEdit, faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons'
 
 
-const PatientsList = ({ patientList, editPatient, deletePatient, addNewPatient, history }) => {
+const PatientsList = ({ patientList, deletePatient, history }) => {
 
   return (
     <>

@@ -11,6 +11,15 @@ export const handleDayChange = (user,setUser,birth) => {
   setUser({ ...user, birth, age });
 }
 
+export const handleFormSubmit = (user,setUser,updateUser,history,e) => {
+  e.preventDefault();
+  updateUser(user)
+  setUser({});
+  history.push('/Patients-crud');
+}
+
+
+
 const CalculateAge = dob => {
   var diff_ms = Date.now() - dob.getTime();
   var age_dt = new Date(diff_ms);

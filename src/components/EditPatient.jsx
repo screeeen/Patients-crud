@@ -4,25 +4,20 @@ import { faCheck, faUserEdit } from '@fortawesome/free-solid-svg-icons'
 import {EndForm,TitleH3} from './Styles.jsx'
 import {formatDate,parseDate} from 'react-day-picker/moment';
 import { now } from 'moment';
-import {handleInputChange,handleDayChange} from './utils'
+import {handleInputChange,handleDayChange,handleFormSubmit} from './utils'
 import InputBoxCompo  from './InputBoxCompo';
 import IconCompo from './IconCompo'
 
-const EditPatient = ({ editPatient, location, history }) => {
+const EditPatient = ({ updatePatient, location, history }) => {
 
   const initialuser = location.state.patient;
   const [user, setUser] = useState(initialuser)
 
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
-    editPatient(user);
-    history.push('/Patients-crud');
-  }
 
   return (
     <>
       <TitleH3>Editing <span>{user.name} {user.surname}</span></TitleH3>
-      <form onSubmit={handleFormSubmit}>
+      <form onSubmit={e => handleFormSubmit(user,setUser,updatePatient,history,e)}>
       <IconCompo icon={faUserEdit} size={'lg'} color={'slategrey'} />
         <InputBoxCompo type="text" required name="name" placeholder="Enter patients name..." value={user.name} onChange={e => handleInputChange(user,setUser,e)} />
         <InputBoxCompo type="text" required name="surname" placeholder="...surname" value={user.surname} onChange={e => handleInputChange(user,setUser,e)} />
